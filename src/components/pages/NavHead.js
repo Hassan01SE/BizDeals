@@ -5,6 +5,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+import { FaUserCircle } from 'react-icons/fa';
+
 
 
 const NavHead = () => {
@@ -17,6 +19,7 @@ const NavHead = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="#home">Home</Nav.Link>
+
                         <NavDropdown title="Businesses" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">All Businesses</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.1">Restaurants</NavDropdown.Item>
@@ -24,10 +27,20 @@ const NavHead = () => {
                                 Ecommerce
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">Softwares/Websites</NavDropdown.Item>
-
                         </NavDropdown>
+
                         <Nav.Link href="#link">List a Business</Nav.Link>
+
                     </Nav>
+                    {/*  <Nav.Link href="#link"><FaUserCircle id='profile' /></Nav.Link> */}
+                    <NavDropdown title=<FaUserCircle id='profile' /> id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1">Sign in</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.1">Sign up</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2">
+                            Logout
+                        </NavDropdown.Item>
+                    </NavDropdown>
+
                 </Navbar.Collapse>
             </Container>
         </Navbar>

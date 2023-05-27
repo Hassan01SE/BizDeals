@@ -13,8 +13,12 @@ import Col from 'react-bootstrap/Col';
 let coverpic = require('../images/image1.png');
 let coverpic2 = require('../images/image2.png');
 let coverpic3 = require('../images/image3.png');
+let coverpic4 = require('../images/coverpic4.png');
+let coverpic5 = require('../images/coverpic5.png');
 let dollar = require('../images/money.png');
 let dollar2 = require('../images/dollar2.png');
+
+const images = [coverpic2, coverpic4, coverpic5];
 
 
 
@@ -22,7 +26,7 @@ let dollar2 = require('../images/dollar2.png');
 const TextBox = (props) => {
     const { title, description } = props;
     return (
-        <Container fluid className="text-box">
+        <Container className="text-box">
             <h3>{title}</h3>
             <p>
                 {description}
@@ -34,10 +38,21 @@ const TextBox = (props) => {
 
 const LandingPage = () => {
 
+    const [bgImage, setBgImage] = useState(coverpic2);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+            setBgImage(randomImage);
+        }, 3000);
+
+        return () => clearInterval(interval); // Clear the interval when the component is unmounted
+
+    }, []);
 
 
     return (
-        <Container fluid>
+        <Container fluid id="container">
 
             <Parallax className="image" bgImage={coverpic} strength={800}>
                 <div className="content">
@@ -48,7 +63,7 @@ const LandingPage = () => {
 
             <TextBox title="Your Partner in Profitable Investments" description="At Bizdeals, we help savvy investors like you find profitable businesses that fit your investment goals. With our expertise and resources, you can make a smart choice and secure a profitable future." />
 
-            <Parallax className="image" bgImage={coverpic2} strength={800}>
+            <Parallax className="image" bgImage={bgImage} strength={800}>
                 <div className="content">
                     <span className="img-text">Sell your business with ease and get the best value.</span>
                 </div>

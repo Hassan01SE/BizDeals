@@ -14,6 +14,7 @@
 }
 
 .content span.img-text {
+  box-sizing: border-box;
   background-color: #11468F;
   border-radius: 2rem;
   text-transform: uppercase;
@@ -28,10 +29,32 @@ h3 {
   text-transform: uppercase;
   font: 1.3rem;
   text-align: center;
+  color: #11468F;
+
 }
 
 .text-box {
   text-align: center;
   padding: 3rem 1rem;
   text-align: justify;
+}
+
+.text-box>p {
+  letter-spacing: 1.2px;
+  width: auto;
+}
+
+#container {
+  padding-left: 0;
+  padding-right: 0;
+
+
+}
+
+@media (width<850px) {
+  .content span.img-text {
+
+    letter-spacing: 0;
+  }
+
 }
