@@ -16,22 +16,22 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <a href='' className='me-4 text-reset'>
+                        <a href='https://www.linkedin.com/company/bizdealsned/' className='me-4 text-reset'>
                             <MDBIcon fab icon="facebook-f" />
                         </a>
-                        <a href='' className='me-4 text-reset'>
+                        <a href='https://www.linkedin.com/company/bizdealsned/' className='me-4 text-reset'>
                             <MDBIcon fab icon="twitter" />
                         </a>
-                        <a href='' className='me-4 text-reset'>
+                        <a href='https://www.linkedin.com/company/bizdealsned/' className='me-4 text-reset'>
                             <MDBIcon fab icon="google" />
                         </a>
-                        <a href='' className='me-4 text-reset'>
+                        <a href='https://www.linkedin.com/company/bizdealsned/' className='me-4 text-reset'>
                             <MDBIcon fab icon="instagram" />
                         </a>
-                        <a href='' className='me-4 text-reset'>
+                        <a href='https://www.linkedin.com/company/bizdealsned/' className='me-4 text-reset'>
                             <MDBIcon fab icon="linkedin" />
                         </a>
-                        <a href='' className='me-4 text-reset'>
+                        <a href='https://github.com/Hassan01SE/BizDeals' className='me-4 text-reset'>
                             <MDBIcon fab icon="github" />
                         </a>
                     </div>
@@ -50,39 +50,17 @@ const Footer = () => {
                                 </p>
                             </MDBCol>
 
-                            {/*  <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
-                                <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
-                                <p>
-                                    <a href='#!' className='text-reset'>
-                                        Angular
-                                    </a>
-                                </p>
-                                <p>
-                                    <a href='#!' className='text-reset'>
-                                        React
-                                    </a>
-                                </p>
-                                <p>
-                                    <a href='#!' className='text-reset'>
-                                        Vue
-                                    </a>
-                                </p>
-                                <p>
-                                    <a href='#!' className='text-reset'>
-                                        Laravel
-                                    </a>
-                                </p>
-                            </MDBCol> */}
+
 
                             <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
                                 <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
                                 <p>
-                                    <a href='#!' className='text-reset'>
+                                    <a href='/home' className='text-reset'>
                                         Home
                                     </a>
                                 </p>
                                 <p>
-                                    <a href='#!' className='text-reset'>
+                                    <a href='/businesses/all' className='text-reset'>
                                         Businesses For Sale
                                     </a>
                                 </p>
