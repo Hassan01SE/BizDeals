@@ -12,7 +12,7 @@ import { FaUserCircle } from 'react-icons/fa';
 const NavHead = () => {
     return (
 
-        <Navbar expand="lg">
+        <Navbar style={{ backgroundColor: '#F6F1F1' }} expand="lg">
             <Container>
                 <Navbar.Brand className='logo' href="/">BizDeals</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -34,8 +34,8 @@ const NavHead = () => {
                     </Nav>
                     {/*  <Nav.Link href="#link"><FaUserCircle id='profile' /></Nav.Link> */}
                     <NavDropdown title=<FaUserCircle id='profile' /> id="basic-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Sign in</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.1">Sign up</NavDropdown.Item>
+                        <NavDropdown.Item href="/login">Sign in</NavDropdown.Item>
+                        <NavDropdown.Item href="/register">Sign up</NavDropdown.Item>
                         <NavDropdown.Item href="#action/3.2">
                             Logout
                         </NavDropdown.Item>

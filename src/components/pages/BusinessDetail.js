@@ -71,7 +71,7 @@ const BusinessDetail = () => {
                     <Row>
                         <h1>DelightWear - Ecommerce Website for sale!</h1>
                         <h5>Price: Rs 200,000</h5>
-                        <Button className='btn btn-md-primary'> Inquire </Button>
+                        <Button className='btn btn-md-primary'> Purchase </Button>
                     </Row>
 
                     <Row>

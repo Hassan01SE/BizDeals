@@ -12,6 +12,8 @@ import NotFound from './components/pages/NotFound';
 import { useEffect } from 'react';
 import BusinessList from './components/pages/BusinessList';
 import BusinessDetail from './components/pages/BusinessDetail';
+import Register from './components/pages/Register';
+import Login from './components/pages/Login';
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
 
             <Route path="/" element={<LandingPage />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/businesses/:category" element={<BusinessList />} />
             <Route path="/detail" element={<BusinessDetail />} />
 
