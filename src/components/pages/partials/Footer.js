@@ -70,7 +70,7 @@ const Footer = () => {
                                     </a>
                                 </p>
                                 <p>
-                                    <a href='#!' className='text-reset'>
+                                    <a href='/' className='text-reset'>
                                         About
                                     </a>
                                 </p>

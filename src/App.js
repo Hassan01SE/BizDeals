@@ -7,18 +7,27 @@ import NavHead from './components/pages/partials/NavHead';
 import Footer from './components/pages/partials/Footer';
 import Home from './components/pages/Home';
 import NotFound from './components/pages/NotFound';
+import Cart from './components/pages/Cart';
+import Checkout from './components/pages/Checkout';
 
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import BusinessList from './components/pages/BusinessList';
 import BusinessDetail from './components/pages/BusinessDetail';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
+import Preloader from './components/pages/Preloader';
 
 
 function App() {
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000)
 
     document.title = "BizDeals";
 
@@ -29,26 +38,38 @@ function App() {
 
   return (
     <div className="App">
-      <div className="app-content">
-        <NavHead />
-        <Router>
-          <Routes>
 
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/businesses/:category" element={<BusinessList />} />
-            <Route path="/detail" element={<BusinessDetail />} />
+      {loading ?
+
+        <Preloader />
+        :
 
 
-            <Route path="*" element={<NotFound />} />
 
-          </Routes>
-        </Router>
+        <div className="app-content">
+          <NavHead />
+          <Router>
+            <Routes>
 
-        <Footer />
-      </div>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/businesses/:category" element={<BusinessList />} />
+              <Route path="/detail" element={<BusinessDetail />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
+
+
+              <Route path="*" element={<NotFound />} />
+
+            </Routes>
+          </Router>
+
+          <Footer />
+        </div>
+
+      }
     </div>
   );
 }

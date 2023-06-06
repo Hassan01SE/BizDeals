@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-import { FaUserCircle } from 'react-icons/fa';
+import { FaUserCircle, FaShoppingBag } from 'react-icons/fa';
 
 
 
@@ -13,7 +13,7 @@ const NavHead = () => {
     return (
 
         <Navbar style={{ backgroundColor: '#F6F1F1' }} expand="lg">
-            <Container>
+            <Container >
                 <Navbar.Brand className='logo' href="/">BizDeals</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -33,13 +33,16 @@ const NavHead = () => {
 
                     </Nav>
                     {/*  <Nav.Link href="#link"><FaUserCircle id='profile' /></Nav.Link> */}
-                    <NavDropdown title=<FaUserCircle id='profile' /> id="basic-nav-dropdown">
-                        <NavDropdown.Item href="/login">Sign in</NavDropdown.Item>
-                        <NavDropdown.Item href="/register">Sign up</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">
-                            Logout
-                        </NavDropdown.Item>
-                    </NavDropdown>
+                    <Nav className="">
+                        <NavDropdown.Item href="/cart"><FaShoppingBag id='cart' /></NavDropdown.Item>
+                        <NavDropdown id="basic-nav-dropdown" title=<FaUserCircle id='profile' />>
+                            <NavDropdown.Item href="/login">Sign in</NavDropdown.Item>
+                            <NavDropdown.Item href="/register">Sign up</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">
+                                Logout
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
 
 
                 </Navbar.Collapse>

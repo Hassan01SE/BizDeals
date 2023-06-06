@@ -8,8 +8,17 @@ import BusinessList from './BusinessList';
 
 import "../style/Home.css"
 
+import client from "../config/AxiosConfig";
+
 
 const Home = () => {
+
+
+
+
+
+
+
     return (
         <div>
             <Header />
