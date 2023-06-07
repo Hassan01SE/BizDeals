@@ -17,6 +17,8 @@ import BusinessDetail from './components/pages/BusinessDetail';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
 import Preloader from './components/pages/Preloader';
+import SellPage from './components/pages/SellPage';
+import Account from './components/pages/Account';
 
 
 function App() {
@@ -59,6 +61,8 @@ function App() {
               <Route path="/detail" element={<BusinessDetail />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/sell" element={<SellPage />} />
+              <Route path="/account" element={<Account />} />
 
 
               <Route path="*" element={<NotFound />} />

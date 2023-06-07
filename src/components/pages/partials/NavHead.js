@@ -29,7 +29,7 @@ const NavHead = () => {
                             <NavDropdown.Item href="/businesses/digital">Softwares/Websites</NavDropdown.Item>
                         </NavDropdown>
 
-                        <Nav.Link href="#link">List a Business</Nav.Link>
+                        <Nav.Link href="/sell">List a Business</Nav.Link>
 
                     </Nav>
                     {/*  <Nav.Link href="#link"><FaUserCircle id='profile' /></Nav.Link> */}
@@ -38,9 +38,11 @@ const NavHead = () => {
                         <NavDropdown id="basic-nav-dropdown" title=<FaUserCircle id='profile' />>
                             <NavDropdown.Item href="/login">Sign in</NavDropdown.Item>
                             <NavDropdown.Item href="/register">Sign up</NavDropdown.Item>
+                            <NavDropdown.Item href="/account">Account</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
                                 Logout
                             </NavDropdown.Item>
+
                         </NavDropdown>
                     </Nav>
 
