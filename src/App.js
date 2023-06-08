@@ -19,6 +19,7 @@ import Login from './components/pages/Login';
 import Preloader from './components/pages/Preloader';
 import SellPage from './components/pages/SellPage';
 import Account from './components/pages/Account';
+import BusinessEdit from './components/pages/BusinessEdit';
 
 
 function App() {
@@ -58,10 +59,11 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/businesses/:category" element={<BusinessList />} />
-              <Route path="/detail" element={<BusinessDetail />} />
+              <Route path="/business/:id" element={<BusinessDetail />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/sell" element={<SellPage />} />
+              <Route path="/edit" element={<BusinessEdit />} />
               <Route path="/account" element={<Account />} />
 
 

@@ -25,17 +25,17 @@ const Home = () => {
             <Container fluid  >
                 <Row className='mt-6 mb-3' >
                     <Col>
-                        <BusinessList heading="Restaurant Businesses" banner={false} />
+                        <BusinessList heading="Restaurant Businesses" type="restaurant" banner={false} />
                     </Col>
                 </Row>
                 <Row >
                     <Col>
-                        <BusinessList heading="Ecommerce Businesses" banner={false} />
+                        <BusinessList heading="Ecommerce Businesses" type="ecommerce" banner={false} />
                     </Col>
                 </Row>
                 <Row >
                     <Col>
-                        <BusinessList heading="Digital Businesses" banner={false} />
+                        <BusinessList heading="Digital Businesses" type="digital" banner={false} />
                     </Col>
                 </Row>
 

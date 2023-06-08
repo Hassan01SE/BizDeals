@@ -9,13 +9,52 @@ import pic from '../images/delightwear.jpeg';
 
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Header from './partials/Header';
+import client from "../config/AxiosConfig";
 
 const BusinessList = (props) => {
+
+
+
     let { category } = useParams();
 
-    const { heading, banner = true } = props;
+    const { heading, banner = true, type } = props;
+
+    let baseURL;
+
+    if (category) {
+        baseURL = `listings/?category=${category}`;
+
+    }
+    else if (type) {
+        baseURL = `listings/?category=${type}`;
+    }
+    else {
+        baseURL = 'listings/';
+    }
+
+
+
+    const [data, setData] = useState([]);
+
+
+    useEffect(() => {
+
+        client.get(baseURL).then((res) => {
+            setData(res.data)
+
+        })
+
+
+
+    }, [])
+
+
+
+
+
 
 
     function titleCase(str) {
@@ -24,7 +63,7 @@ const BusinessList = (props) => {
         }).join(' ');
     }
 
-    const categories = ["all", "restaurants", "ecommerce", "digital"];
+    const categories = ["all", "restaurant", "ecommerce", "digital"];
 
     if (category) {
         const listed = categories.find((m) => m === category.toLowerCase());
@@ -33,6 +72,7 @@ const BusinessList = (props) => {
         }
     }
 
+    if (!data) return <h1>None</h1>
 
 
     return (
@@ -47,96 +87,33 @@ const BusinessList = (props) => {
                 {category && <h1>{titleCase(category) + " Businesses"}</h1>}
                 {!category && <h1>{heading}</h1>}
                 <Row className=' mt-4 mb-4 overflow-auto' style={{ height: "800px" }}>
-                    <Col className='col-lg-3 mt-2 mr-2 ml-2 mb-2' >
 
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={pic} />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
 
-                    </Col>
-                    <Col className='col-lg-3 mt-2 mr-2 ml-2 mb-2' >
+                    {data.map((item) => {
+                        return (
+                            <Col className='col-lg-3 mt-2 mr-2 ml-2 mb-2' key={item.id} >
 
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={pic} />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
+                                <Card style={{ height: '28rem' }} >
+                                    <Card.Img variant="top" src={item.img1} />
+                                    <Card.Body  >
+                                        <Card.Title>{item.title}</Card.Title>
+                                        <Card.Text>
+                                            Asking Price: Rs {item.price}
+                                        </Card.Text>
+                                        <Button variant="primary"><Link style={{ textDecoration: 'none', color: 'white' }} to={`/business/${item.id}`} >View Details</Link></Button>
 
-                    </Col>
-                    <Col className='col-lg-3 mt-2 mr-2 ml-2 mb-2' >
+                                    </Card.Body>
+                                </Card>
 
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={pic} />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
+                            </Col>
 
-                    </Col>
-                    <Col className='col-lg-3 mt-2 mr-2 ml-2 mb-2' >
+                        )
 
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={pic} />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
 
-                    </Col>
-                    <Col className='col-lg-3 mt-2 mr-2 ml-2 mb-2' >
 
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={pic} />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
+                    })}
 
-                    </Col>
-                    <Col className='col-lg-3 mt-2 mr-2 ml-2 mb-2' >
 
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Img variant="top" src={pic} />
-                            <Card.Body>
-                                <Card.Title>Card Title</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </Card.Text>
-                                <Button variant="primary">Go somewhere</Button>
-                            </Card.Body>
-                        </Card>
-
-                    </Col>
                 </Row>
 
             </Container>

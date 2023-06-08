@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 
-
 import Carousel from 'react-bootstrap/Carousel';
 
 import pic from '../images/delightwear.jpeg';
@@ -14,7 +13,39 @@ import pic2 from '../images/coverpic5.png';
 
 import Figure from 'react-bootstrap/Figure';
 
+import { useParams } from 'react-router-dom';
+
+import { useState, useEffect } from 'react';
+
+import client from "../config/AxiosConfig";
+import axios from 'axios';
+
+
 const BusinessDetail = () => {
+
+    const { id } = useParams();
+
+
+    const baseURL = `http://localhost:8000/api/listings/${id}`;
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+
+        axios.get(baseURL).then(
+            (res) => {
+                setData(res.data);
+                document.title = res.data.title + " - Bizdeals";
+            }
+        )
+
+
+    }, [])
+
+    if (!data) {
+        return <h1>None</h1>
+    }
+
     return (
 
         <Container fluid>
@@ -27,10 +58,10 @@ const BusinessDetail = () => {
                                 width={700}
                                 height={700}
                                 alt="171x180"
-                                src={pic}
+                                src={data.img1}
                             />
                             <Figure.Caption>
-                                Business
+                                {data.category}
                             </Figure.Caption>
                         </Figure>
                     </Row>
@@ -42,26 +73,14 @@ const BusinessDetail = () => {
                                     width={300}
                                     height={300}
                                     alt="171x180"
-                                    src={pic2}
+                                    src={data.img2}
                                 />
                                 <Figure.Caption>
-                                    Business
+                                    {data.category}
                                 </Figure.Caption>
                             </Figure>
                         </Col>
-                        <Col>
-                            <Figure>
-                                <Figure.Image
-                                    width={300}
-                                    height={300}
-                                    alt="171x180"
-                                    src={pic2}
-                                />
-                                <Figure.Caption>
-                                    Business
-                                </Figure.Caption>
-                            </Figure>
-                        </Col>
+
 
                     </Row>
 
@@ -69,44 +88,34 @@ const BusinessDetail = () => {
 
                 <Col sm={12} md={6}>
                     <Row>
-                        <h1>DelightWear - Ecommerce Website for sale!</h1>
-                        <h5>Price: Rs 200,000</h5>
+                        <h1 className='mt-2'>{data.title}</h1>
+                        <h5>Price: Rs {data.price}</h5>
                         <Button className='btn btn-md-primary'> Purchase </Button>
                     </Row>
 
                     <Row>
-                        <Card>
-                            <Card.Header>
-                                <Nav variant="pills" defaultActiveKey="#first">
-                                    <Nav.Item>
-                                        <Nav.Link href="#first">Brief</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                        <Nav.Link target='blank' href="https://delightwearstore.000webhostapp.com/">Link</Nav.Link>
-                                    </Nav.Item>
+                        <Card className='mt-3'>
 
-                                </Nav>
-                            </Card.Header>
+
+
+
+                            <h3 className='mt-2'>Description</h3>
+
                             <Card.Body>
-                                <Card.Title>Reason for selling!</Card.Title>
+                                <Card.Title>About us!</Card.Title>
                                 <Card.Text>
-                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi nesciunt est, eaque repellat praesentium asperiores ut amet tenetur non ipsum vel iste ipsa dicta magnam! Explicabo, in. Quas, rem enim.
-                                    Repellendus accusantium nulla placeat, quas facere debitis minima, molestias, exercitationem autem quibusdam blanditiis deleniti maxime a quam porro quod et dolor aspernatur eveniet dolorum sapiente. Veritatis quis repellendus voluptatum atque.
-                                    Aut repellendus sapiente atque delectus quia, illum recusandae qui consequatur reiciendis aspernatur. Facilis numquam reiciendis eligendi atque assumenda esse quibusdam sunt aspernatur iusto, reprehenderit eius voluptas. Illum sed commodi nisi?
-                                    Aut maiores fugit velit culpa suscipit voluptas asperiores, doloremque, qui expedita iure impedit nostrum accusamus nobis ex a. Dolorem, eos voluptatibus. Error ab doloremque repudiandae architecto sequi, accusamus unde illo!
-                                    Quibusdam natus suscipit explicabo doloremque blanditiis nostrum dolorum fugiat quam voluptatum voluptates voluptas voluptate animi quisquam ipsum necessitatibus excepturi quia cumque fuga repellendus inventore, ratione laboriosam voluptatem nisi tempora. Veritatis.
+                                    {data.description}
                                 </Card.Text>
-                                <Card.Title>You will get</Card.Title>
+                                <Card.Title>Location </Card.Title>
                                 <Card.Text>
-                                    Aut repellendus sapiente atque delectus quia, illum recusandae qui consequatur reiciendis aspernatur. Facilis numquam reiciendis eligendi atque assumenda esse quibusdam sunt aspernatur iusto, reprehenderit eius voluptas. Illum sed commodi nisi?
-                                    Aut maiores fugit velit culpa suscipit voluptas asperiores, doloremque, qui expedita iure impedit nostrum accusamus nobis ex a. Dolorem, eos voluptatibus. Error ab doloremque repudiandae architecto sequi, accusamus unde illo!
+                                    {data.location}
                                 </Card.Text>
                                 <Card.Title>Business Info</Card.Title>
                                 <Card.Text>
                                     <ul>
-                                        <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam amet commodi perspiciatis ipsam eos officiis praesentium dolores debitis. Corporis, consectetur. Reiciendis cumque illo cum incidunt totam nulla amet minima temporibus.</li>
-                                        <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam amet commodi perspiciatis ipsam eos officiis praesentium dolores debitis. Corporis, consectetur. Reiciendis cumque illo cum incidunt totam nulla amet minima temporibus.</li>
-                                        <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam amet commodi perspiciatis ipsam eos officiis praesentium dolores debitis. Corporis, consectetur. Reiciendis cumque illo cum incidunt totam nulla amet minima temporibus.</li>
+                                        <li>Revenue in PKR per month: RS {data.revenue}</li>
+                                        <li>Expense in PKR per month: RS {data.expense}</li>
+                                        <li>Profit in PKR per month: RS {data.profit}</li>
                                     </ul>
                                 </Card.Text>
 

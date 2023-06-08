@@ -22,7 +22,7 @@ const NavHead = () => {
 
                         <NavDropdown title="Businesses" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/businesses/all">All Businesses</NavDropdown.Item>
-                            <NavDropdown.Item href="/businesses/restaurants">Restaurants</NavDropdown.Item>
+                            <NavDropdown.Item href="/businesses/restaurant">Restaurant</NavDropdown.Item>
                             <NavDropdown.Item href="/businesses/ecommerce">
                                 Ecommerce
                             </NavDropdown.Item>
