@@ -49,8 +49,7 @@ const SellPage = () => {
 
                     <FloatingLabel controlId="floatingSelect" label="Listing Type?"
                         className="mb-3">
-                        <Form.Select aria-label="Floating label select example">
-                            <option>Open this select menu</option>
+                        <Form.Select name='category' aria-label="Floating label select example">
                             <option value="restaurant">Restaurant</option>
                             <option value="ecommerce">Ecommerce</option>
                             <option value="digital">Digital(Website/Software)</option>

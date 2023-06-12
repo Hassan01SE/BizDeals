@@ -1,6 +1,6 @@
 import './App.css';
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
 import LandingPage from './components/pages/Landing';
 import NavHead from './components/pages/partials/NavHead';
@@ -26,6 +26,9 @@ function App() {
 
   const [loading, setLoading] = useState(false);
 
+
+
+
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -35,6 +38,14 @@ function App() {
     document.title = "BizDeals";
 
   }, [])
+
+
+  const isUserLoggedIn = localStorage.getItem('user_name');
+
+
+
+
+
 
 
 
@@ -50,9 +61,11 @@ function App() {
 
 
         <div className="app-content">
-          <NavHead />
+
           <Router>
+            <NavHead />
             <Routes>
+
 
               <Route path="/" element={<LandingPage />} />
               <Route path="/home" element={<Home />} />

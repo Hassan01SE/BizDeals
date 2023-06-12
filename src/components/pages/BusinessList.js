@@ -25,14 +25,14 @@ const BusinessList = (props) => {
     let baseURL;
 
     if (category) {
-        baseURL = `listings/?category=${category}`;
+        baseURL = `/listings/?category=${category}`;
 
     }
     else if (type) {
-        baseURL = `listings/?category=${type}`;
+        baseURL = `/listings/?category=${type}`;
     }
     else {
-        baseURL = 'listings/';
+        baseURL = '/listings';
     }
 
 

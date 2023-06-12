@@ -4,12 +4,22 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useNavigate } from 'react-router-dom';
 
 import { FaUserCircle, FaShoppingBag } from 'react-icons/fa';
 
 
 
 const NavHead = () => {
+    const navigate = useNavigate();
+
+
+    const logout = () => {
+        localStorage.clear();
+
+        navigate('/login');
+    }
+
     return (
 
         <Navbar style={{ backgroundColor: '#F6F1F1' }} expand="lg">
@@ -39,9 +49,9 @@ const NavHead = () => {
                             <NavDropdown.Item href="/login">Sign in</NavDropdown.Item>
                             <NavDropdown.Item href="/register">Sign up</NavDropdown.Item>
                             <NavDropdown.Item href="/account">Account</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
+                            {localStorage.getItem('user_name') && <NavDropdown.Item href="" onClick={logout}>
                                 Logout
-                            </NavDropdown.Item>
+                            </NavDropdown.Item>}
 
                         </NavDropdown>
                     </Nav>

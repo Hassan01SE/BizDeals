@@ -6,8 +6,12 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+
+import { useFormik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import client from '../config/AxiosConfig';
 
 
 const Login = () => {
@@ -23,6 +27,41 @@ const Login = () => {
 
 
 
+    const navigate = useNavigate();
+
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+        },
+        validationSchema: Yup.object({
+
+            email: Yup.string().email('Invalid email address').required('Required'),
+            password: Yup.string().min(4, 'must be longer than 6 characters').required('Password is required')
+        }),
+        onSubmit: async (values, { setSubmitting }) => {
+            try {
+                const response = await client.post('/user/login/', values);
+                console.log(response.data);
+                // Handle success
+                localStorage.setItem('access_token', response.data.access);
+                localStorage.setItem('refresh_token', response.data.refresh);
+                localStorage.setItem('user_name', response.data.user_name);
+                client.defaults.headers['Authorization'] = 'JWT ' + localStorage.getItem('access_token');
+                navigate('/home');
+            } catch (error) {
+                console.error(error);
+                // Handle error
+            } finally {
+                setSubmitting(false);
+            }
+        }
+    });
+
+
+
+
+
     return (<div>
         {/*  <Header /> */}
 
@@ -32,14 +71,18 @@ const Login = () => {
 
                 <h2 style={{ textAlign: 'center', marginBottom: '15px', fontWeight: '500' }}>Login Page</h2>
 
-                <Form>
+                <Form onSubmit={formik.handleSubmit}>
                     <Form.Floating className="mb-3">
                         <Form.Control
                             id="floatingInputCustom"
                             type="email"
                             placeholder="name@example.com"
                             name='email'
+                            {...formik.getFieldProps('email')}
                         />
+                        {formik.touched.email && formik.errors.email ? (
+                            <div className="text-danger">{formik.errors.email}</div>
+                        ) : null}
                         <label htmlFor="floatingInputCustom">Email address</label>
                     </Form.Floating>
                     <Form.Floating>
@@ -48,7 +91,11 @@ const Login = () => {
                             type="password"
                             placeholder="Password"
                             name='password'
+                            {...formik.getFieldProps('password')}
                         />
+                        {formik.touched.password && formik.errors.password ? (
+                            <div className="text-danger">{formik.errors.password}</div>
+                        ) : null}
                         <label htmlFor="floatingPasswordCustom">Password</label>
                     </Form.Floating>
 
