@@ -18,7 +18,7 @@ const Checkout = () => {
                     <div class="py-5 text-center">
 
                         <h1>Checkout</h1>
-                        <p class="lead">All details entered must be Correct.</p>
+                        <p class="lead"> <span><b>Disclaimer:</b></span> When purchasing a business through our platform, please be aware that a token payment of 30% of the business's value will be required. Additionally, BizDeal, as the provider of the platform facilitating the buying and selling of businesses, will retain a share of 20% from the paid token amount. It's important to consider these factors and evaluate the overall cost before proceeding with a purchase. We recommend conducting thorough research and seeking professional advice to make informed decisions.</p>
                     </div>
                     <div class="row">
                         <div class="col-md-4 order-md-2 mb-4">

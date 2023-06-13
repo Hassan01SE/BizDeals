@@ -9,9 +9,12 @@ import BusinessList from './BusinessList';
 import "../style/Home.css"
 
 import client from "../config/AxiosConfig";
-
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+
+    const navigate = useNavigate();
+
 
 
 

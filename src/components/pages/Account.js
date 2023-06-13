@@ -4,9 +4,59 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
+import client from "../config/AxiosConfig";
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 
 const Account = () => {
+
+    const user = localStorage.getItem('user_name');
+
+    const baseURL = `/listings/?username=${user}`;
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+
+        client.get(baseURL).then((res) => {
+            setData(res.data)
+
+        })
+
+
+
+    }, [])
+
+    const navigate = useNavigate();
+
+    const update = (id) => {
+        navigate(`/edit/${id}`)
+
+    }
+
+    const deleteListing = (id) => {
+
+        client.delete(`/listings/${id}`)
+            .then((res) => {
+                navigate(`/account`);
+            })
+
+    }
+
+    const NoBusiness = () => {
+        return (<div>
+            <h4 style={{ textAlign: 'center' }} className='mb-5 mt-3'>No Listed Businesses by You!</h4>
+            <p>Click on <Link to='/sell' > List a Business</Link> to sell your Business </p>
+        </div>);
+    }
+
+
+
+
+
+
     return (
 
         <div className='mt-3 mb-5'>
@@ -14,7 +64,7 @@ const Account = () => {
                 <Row>
                     <Col>
                         <h2>Account details</h2>
-                        <h6>Hassan Sohail</h6>
+                        <h6>Username: {user}</h6>
                     </Col>
                 </Row>
                 <hr />
@@ -22,8 +72,36 @@ const Account = () => {
                     <h3 className='mb-3'>Business you are selling!</h3>
                 </Row>
 
+
+
                 <Row>
-                    <Col className='mb-2 mt-2 ml-2 mr-2 col-6'>
+
+                    {data.length <= 0 && <NoBusiness />}
+
+                    {data.map((item) => {
+                        return (
+                            <Col className='mb-2 mt-2 ml-2 mr-2 col-6' key={item.id}>
+
+                                <Card >
+                                    <Card.Img variant="top" src={item.img1} />
+                                    <Card.Body>
+                                        <Card.Title>{item.title}</Card.Title>
+                                        <Card.Text>
+                                            Price RS {item.price}
+                                        </Card.Text>
+                                        <Button className='mr-2' variant="warning" onClick={() => { update(item.id) }}>Edit Listing</Button>
+                                        <Button className='ml-2' variant="danger" onClick={() => { deleteListing(item.id) }}>Delete Listing</Button>
+                                    </Card.Body>
+                                </Card>
+
+                            </Col>)
+                    })}
+
+
+
+
+
+                    {/* <Col className='mb-2 mt-2 ml-2 mr-2 col-6'>
 
                         <Card >
                             <Card.Body>
@@ -36,7 +114,7 @@ const Account = () => {
                             </Card.Body>
                         </Card>
 
-                    </Col>
+                    </Col> */}
 
 
 
@@ -48,6 +126,7 @@ const Account = () => {
 
             </Container>
         </div>);
+
 }
 
 export default Account;

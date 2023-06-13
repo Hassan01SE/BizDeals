@@ -7,14 +7,18 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useNavigate } from 'react-router-dom';
 
 import { FaUserCircle, FaShoppingBag } from 'react-icons/fa';
-
+import { useAuth } from '../../context/Auth';
 
 
 const NavHead = () => {
     const navigate = useNavigate();
+    const auth = useAuth();
 
 
     const logout = () => {
+        if (auth) {
+            auth.logout();
+        }
         localStorage.clear();
 
         navigate('/login');
@@ -46,8 +50,8 @@ const NavHead = () => {
                     <Nav className="">
                         <NavDropdown.Item href="/cart"><FaShoppingBag id='cart' /></NavDropdown.Item>
                         <NavDropdown id="basic-nav-dropdown" title=<FaUserCircle id='profile' />>
-                            <NavDropdown.Item href="/login">Sign in</NavDropdown.Item>
-                            <NavDropdown.Item href="/register">Sign up</NavDropdown.Item>
+                            {!localStorage.getItem('user_name') && <NavDropdown.Item href="/login">Sign in</NavDropdown.Item>}
+                            {!localStorage.getItem('user_name') && <NavDropdown.Item href="/register">Sign up</NavDropdown.Item>}
                             <NavDropdown.Item href="/account">Account</NavDropdown.Item>
                             {localStorage.getItem('user_name') && <NavDropdown.Item href="" onClick={logout}>
                                 Logout

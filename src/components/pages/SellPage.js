@@ -5,7 +5,21 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import { useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+import { useFormik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import client from '../config/AxiosConfig';
+
 const SellPage = () => {
+
+    const navigate = useNavigate();
+
+
+
+
+
     return (<div className='mb-5 mt-3'>
         <Container>
             <Row>
@@ -28,7 +42,7 @@ const SellPage = () => {
                         label="Full Name"
                         className="mb-3"
                     >
-                        <Form.Control name='name' type="text" placeholder="Ahmed" />
+                        <Form.Control name='seller' type="text" placeholder="Ahmed" />
                     </FloatingLabel>
 
                     <FloatingLabel
@@ -66,7 +80,7 @@ const SellPage = () => {
 
                     <FloatingLabel
                         controlId="floatingInput"
-                        label="Asking Price?"
+                        label="Asking Price? (PKR)"
                         className="mb-3"
                     >
                         <Form.Control name='price' type="number" placeholder="150000" />
@@ -74,7 +88,7 @@ const SellPage = () => {
 
                     <FloatingLabel
                         controlId="floatingInput"
-                        label="Average Monthly Revenue?"
+                        label="Average Monthly Revenue? (PKR)"
                         className="mb-3"
                     >
                         <Form.Control name='revenue' type="number" placeholder="200000" />
@@ -82,7 +96,7 @@ const SellPage = () => {
 
                     <FloatingLabel
                         controlId="floatingInput"
-                        label="Average Net Expenses per Month?"
+                        label="Average Net Expenses per Month? (PKR)"
                         className="mb-3"
                     >
                         <Form.Control name='expense' type="number" placeholder="60000" />
@@ -90,7 +104,7 @@ const SellPage = () => {
 
                     <FloatingLabel
                         controlId="floatingInput"
-                        label="Average Net Profit per Month?"
+                        label="Average Net Profit per Month? (PKR)"
                         className="mb-3"
                     >
                         <Form.Control name='profit' type="number" placeholder="80000" />
@@ -103,6 +117,22 @@ const SellPage = () => {
                             placeholder="Details of your business"
                             style={{ height: '400px' }}
                         />
+                    </FloatingLabel>
+
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Image1 (URL)"
+                        className="mb-3"
+                    >
+                        <Form.Control name='img1' type="text" placeholder="image1" />
+                    </FloatingLabel>
+
+                    <FloatingLabel
+                        controlId="floatingInput"
+                        label="Image2 (URL)"
+                        className="mb-3"
+                    >
+                        <Form.Control name='img2' type="text" placeholder="image2" />
                     </FloatingLabel>
 
                     <Button variant="primary" type="submit">

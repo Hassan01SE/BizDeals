@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { useFormik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import client from '../config/AxiosConfig';
+import { useAuth } from '../context/Auth';
 
 
 const Login = () => {
@@ -26,7 +27,7 @@ const Login = () => {
     }
 
 
-
+    const auth = useAuth();
     const navigate = useNavigate();
 
     const formik = useFormik({
@@ -48,6 +49,7 @@ const Login = () => {
                 localStorage.setItem('refresh_token', response.data.refresh);
                 localStorage.setItem('user_name', response.data.user_name);
                 client.defaults.headers['Authorization'] = 'JWT ' + localStorage.getItem('access_token');
+                auth.login(response.data.user_name);
                 navigate('/home');
             } catch (error) {
                 console.error(error);

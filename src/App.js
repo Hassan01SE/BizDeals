@@ -9,8 +9,6 @@ import Home from './components/pages/Home';
 import NotFound from './components/pages/NotFound';
 import Cart from './components/pages/Cart';
 import Checkout from './components/pages/Checkout';
-
-
 import { useEffect, useState } from 'react';
 import BusinessList from './components/pages/BusinessList';
 import BusinessDetail from './components/pages/BusinessDetail';
@@ -20,6 +18,9 @@ import Preloader from './components/pages/Preloader';
 import SellPage from './components/pages/SellPage';
 import Account from './components/pages/Account';
 import BusinessEdit from './components/pages/BusinessEdit';
+
+import { AuthProvider, useAuth } from './components/context/Auth';
+import ProtectedRoute from './components/context/ProtectedRoute';
 
 
 function App() {
@@ -62,28 +63,44 @@ function App() {
 
         <div className="app-content">
 
+
+
           <Router>
-            <NavHead />
-            <Routes>
 
 
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/businesses/:category" element={<BusinessList />} />
-              <Route path="/business/:id" element={<BusinessDetail />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/sell" element={<SellPage />} />
-              <Route path="/edit" element={<BusinessEdit />} />
-              <Route path="/account" element={<Account />} />
+            <AuthProvider>
+              <NavHead />
+
+              <Routes>
 
 
-              <Route path="*" element={<NotFound />} />
+                <Route path="/" element={<LandingPage />} />
 
-            </Routes>
+                {/* <Route path="/home" element={<Home />} /> */}
+
+                <Route path='/' element={<ProtectedRoute />}>
+                  <Route path='/home' element={<Home />} />
+                  <Route path="/businesses/:category" element={<BusinessList />} />
+                  <Route path="/business/:id" element={<BusinessDetail />} />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/sell" element={<SellPage />} />
+                  <Route path="/edit/:id" element={<BusinessEdit />} />
+                  <Route path="/account" element={<Account />} />
+
+                </Route>
+
+                <Route path="/register" element={<Register />} />
+                <Route path="/login" element={<Login />} />
+
+
+
+                <Route path="*" element={<NotFound />} />
+
+              </Routes>
+            </AuthProvider>
           </Router>
+
 
           <Footer />
         </div>
