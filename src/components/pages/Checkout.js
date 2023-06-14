@@ -24,6 +24,8 @@ const Checkout = () => {
 
     const [data, setData] = useState([]);
 
+    const user = localStorage.getItem('user_name');
+
 
 
     useEffect(() => {
@@ -51,7 +53,7 @@ const Checkout = () => {
                     <div class="py-5 text-center">
 
                         <h1>Checkout</h1>
-                        <p class="lead"> <span><b>Disclaimer:</b></span> When purchasing a business through our platform, please be aware that a token payment of 30% of the business's value will be required. Additionally, BizDeal, as the provider of the platform facilitating the buying and selling of businesses, will retain a share of 20% from the paid token amount. It's important to consider these factors and evaluate the overall cost before proceeding with a purchase. We recommend conducting thorough research and seeking professional advice to make informed decisions.</p>
+                        <p class="lead"> <span><b>Disclaimer:</b></span> When purchasing a business through our platform, <b>please be aware that a token payment of 30% of the business's value will be required.</b> Additionally, BizDeal, as the provider of the platform facilitating the buying and selling of businesses, <b>will retain a share of 20% from the paid token amount.</b> It's important to consider these factors and evaluate the overall cost before proceeding with a purchase. We recommend conducting thorough research and seeking professional advice to make informed decisions.</p>
                     </div>
                     <div class="row">
                         <div class="col-md-4 order-md-2 mb-4">
@@ -65,7 +67,12 @@ const Checkout = () => {
                                         <h6 class="my-0">{data.title}</h6>
                                         <small class="text-muted">{data.description}</small>
                                     </div>
-                                    <span class="text-muted">RS {data.price}</span>
+
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between lh-condensed">
+
+                                    <h6>Total Value</h6>
+                                    <span>Rs {data.price}</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between lh-condensed">
 
@@ -100,7 +107,7 @@ const Checkout = () => {
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">@</span>
                                         </div>
-                                        <input type="text" class="form-control" id="username" placeholder="Username" value={data.username} />
+                                        <input type="text" class="form-control" id="username" placeholder="Username" value={user} />
 
                                     </div>
                                 </div>
