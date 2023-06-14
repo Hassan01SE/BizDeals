@@ -36,12 +36,13 @@ const Account = () => {
 
     }
 
-    const deleteListing = (id) => {
+    const deleteListing = async (id) => {
 
-        client.delete(`/listings/${id}`)
-            .then((res) => {
-                navigate(`/account`);
-            })
+        const response = await client.delete(`/listings/${id}`);
+        navigate('/home');
+
+
+
 
     }
 

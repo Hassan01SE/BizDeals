@@ -133,6 +133,7 @@ const BusinessEdit = () => {
                         <Form.Control
                             as="textarea"
                             placeholder="Details of your business"
+                            name='description'
                             style={{ height: '400px' }}
                             value={data.description}
                         />

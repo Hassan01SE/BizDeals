@@ -51,7 +51,7 @@ const BusinessDetail = () => {
         <Container fluid>
 
             <Row className='mb-5 mt-3'>
-                <Col sm={12} md={6} >
+                <Col sm={12} md={6} key={data.id} >
                     <Row>
                         <Figure>
                             <Figure.Image
@@ -61,7 +61,7 @@ const BusinessDetail = () => {
                                 src={data.img1}
                             />
                             <Figure.Caption>
-                                {data.category}
+                                {data.title}
                             </Figure.Caption>
                         </Figure>
                     </Row>
@@ -76,7 +76,7 @@ const BusinessDetail = () => {
                                     src={data.img2}
                                 />
                                 <Figure.Caption>
-                                    {data.category}
+                                    Seller: {data.seller}
                                 </Figure.Caption>
                             </Figure>
                         </Col>
