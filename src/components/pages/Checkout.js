@@ -22,6 +22,8 @@ const Checkout = () => {
     const { id } = useParams();
     const baseURL = `/listings/${id}`;
 
+    const navigate = useNavigate();
+
     const [data, setData] = useState([]);
 
     const user = localStorage.getItem('user_name');
@@ -39,6 +41,53 @@ const Checkout = () => {
 
 
     }, [])
+
+    const formik = useFormik({
+        initialValues: {
+            firstname: '',
+            lastname: '',
+            email: '',
+            number: '',
+            introduction: '',
+        },
+        validationSchema: Yup.object({
+
+            firstname: Yup.string().required('Required'),
+            lastname: Yup.string().required('Required'),
+            email: Yup.string().email('Invalid email address').required('Required'),
+            number: Yup.number().required('Required'),
+            introduction: Yup.string().required('Required'),
+
+
+        }),
+        onSubmit: async (values, { setSubmitting }) => {
+            const business = data.title;
+            const seller = data.seller;
+            const businessprice = data.price;
+            const username = user;
+            const tokenpaid = data.price * 0.31;
+            const payment = { ...values, "business": business, "seller": seller, "businessprice": businessprice, "username": username, "tokenpaid": tokenpaid };
+            //const purchase = JSON.stringify(payment, null, 2)
+            console.log(payment)
+            alert(payment)
+
+
+            try {
+                const response = await client.post('/purchases/', payment);
+                console.log(response.data);
+                // Handle success
+
+                alert('Your Payment was successful')
+                navigate('/home');
+
+            } catch (error) {
+                console.error(error);
+                // Handle error
+            } finally {
+                setSubmitting(false);
+            }
+        }
+    });
 
 
 
@@ -88,17 +137,23 @@ const Checkout = () => {
                         </div>
                         <div class="col-md-8 order-md-1">
                             <h4 class="mb-3">Important Information Required!</h4>
-                            <form  >
+                            <form onSubmit={formik.handleSubmit}  >
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="firstName">First name</label>
-                                        <input type="text" class="form-control" id="firstName" placeholder="" value="" />
-
+                                        <input type="text" class="form-control" id="firstName" placeholder="" value="" name='firstname'
+                                            {...formik.getFieldProps('firstname')} />
+                                        {formik.touched.firstname && formik.errors.firstname ? (
+                                            <div className="text-danger">{formik.errors.firstname}</div>
+                                        ) : null}
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="lastName">Last name</label>
-                                        <input type="text" class="form-control" id="lastName" placeholder="" value="" />
-
+                                        <input type="text" class="form-control" id="lastName" placeholder="" value="" name='lastname'
+                                            {...formik.getFieldProps('lastname')} />
+                                        {formik.touched.lastname && formik.errors.lastname ? (
+                                            <div className="text-danger">{formik.errors.lastname}</div>
+                                        ) : null}
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -113,66 +168,50 @@ const Checkout = () => {
                                 </div>
                                 <div class="mb-3">
                                     <label for="email">Email <span class="text-muted">(Required)</span></label>
-                                    <input type="email" class="form-control" id="email" placeholder="you@example.com" />
-
+                                    <input type="email" class="form-control" id="email" placeholder="you@example.com" name='email'
+                                        {...formik.getFieldProps('email')} />
+                                    {formik.touched.email && formik.errors.email ? (
+                                        <div className="text-danger">{formik.errors.email}</div>
+                                    ) : null}
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="address">Your Introduction</label>
-                                    <input type="text" class="form-control" id="intro" placeholder="Your Short Introduction to the Seller" />
+                                    <input type="text" class="form-control" id="intro" placeholder="Your Short Introduction to the Seller" name='introduction'
+                                        {...formik.getFieldProps('introduction')} />
+                                    {formik.touched.introduction && formik.errors.introduction ? (
+                                        <div className="text-danger">{formik.errors.introduction}</div>
+                                    ) : null}
 
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
                                         <label htmlFor='number'>Contact Number</label>
-                                        {/* <input type="number" class="form-control" id="number" placeholder="Enter your Number" required /> */}
+
                                         <InputGroup className="mb-3">
                                             <InputGroup.Text id="number">+92</InputGroup.Text>
                                             <Form.Control
                                                 placeholder="number"
                                                 aria-label="number"
                                                 aria-describedby="number"
-                                                type='numer'
+                                                type='number'
+                                                name='number'
+                                                {...formik.getFieldProps('number')}
                                             />
+                                            {formik.touched.number && formik.errors.number ? (
+                                                <div className="text-danger">{formik.errors.number}</div>
+                                            ) : null}
                                         </InputGroup>
 
                                     </div>
 
-                                    {/* <div class="col-md-4 mb-3">
-                                        <label for="city">City</label>
-                                        <input type="text" class="form-control" id="city" placeholder="Enter City" required />
-
-                                        <div class="invalid-feedback">
-                                            Please provide a valid city.
-                                        </div>
-                                    </div> */}
-                                    {/*  <div class="col-md-3 mb-3">
-                                        <label for="zip">Zip</label>
-                                        <input type="text" class="form-control" id="zip" placeholder="" required />
-                                        <div class="invalid-feedback">
-                                            Zip code required.
-                                        </div>
-                                    </div> */}
                                 </div>
 
 
                                 <hr class="mb-4" />
                                 <h4 class="mb-3">Payment</h4>
-                                <div class="d-block my-3">
-                                    <div class="custom-control custom-radio">
-                                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required />
-                                        <label class="custom-control-label" for="credit">Credit card</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required />
-                                        <label class="custom-control-label" for="debit">Debit card</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required />
-                                        <label class="custom-control-label" for="paypal">Paypal</label>
-                                    </div>
-                                </div>
+
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="cc-name">Name on card</label>
@@ -207,7 +246,7 @@ const Checkout = () => {
                                     </div>
                                 </div>
                                 <hr class="mb-4" />
-                                <button class="btn btn-primary btn-lg btn-block mb-5" type="button">Purchase</button>
+                                <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Purchase</button>
                             </form>
                         </div>
                     </div>
@@ -220,3 +259,4 @@ const Checkout = () => {
 }
 
 export default Checkout;
+

@@ -50,7 +50,8 @@ const SellPage = () => {
         onSubmit: async (values, { setSubmitting }) => {
             const username = localStorage.getItem('user_name');
             const cat = values.category;
-            const listing = { ...values, 'username': username, 'category': { 'type': cat } };
+            const status = 'online';
+            const listing = { ...values, 'username': username, 'category': { 'type': cat }, 'status': status };
             console.log(listing);
             try {
                 const response = await client.post('/listings/', listing);
