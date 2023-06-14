@@ -96,7 +96,8 @@ const BusinessDetail = () => {
                     <Row>
                         <h1 className='mt-2'>{data.title}</h1>
                         <h5>Price: Rs {data.price}</h5>
-                        <Button onClick={() => { checkout(data.id) }} className='btn btn-md-primary'> Purchase </Button>
+                        {data.username !== localStorage.getItem('user_name') && <Button onClick={() => { checkout(data.id) }} className='btn btn-md-primary'> Purchase </Button>}
+                        {data.username === localStorage.getItem('user_name') && <span><u>You Own this Business!</u></span>}
                     </Row>
 
                     <Row>
