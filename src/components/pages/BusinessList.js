@@ -93,7 +93,7 @@ const BusinessList = (props) => {
                         return (
                             <Col className='col-lg-3 mt-2 mr-2 ml-2 mb-2' key={item.id} >
 
-                                <Card style={{ height: '28rem' }} >
+                                <Card  >
                                     <Card.Img variant="top" src={item.img1} />
                                     <Card.Body  >
                                         <Card.Title>{item.title}</Card.Title>
