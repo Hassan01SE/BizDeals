@@ -48,7 +48,7 @@ const NavHead = () => {
                     </Nav>
                     {/*  <Nav.Link href="#link"><FaUserCircle id='profile' /></Nav.Link> */}
                     <Nav className="">
-                        <NavDropdown.Item href="/cart"><FaShoppingBag id='cart' /></NavDropdown.Item>
+                        {/* <NavDropdown.Item href="/cart"><FaShoppingBag id='cart' /></NavDropdown.Item> */}
                         <NavDropdown id="basic-nav-dropdown" title=<FaUserCircle id='profile' />>
                             {!localStorage.getItem('user_name') && <NavDropdown.Item href="/login">Sign in</NavDropdown.Item>}
                             {!localStorage.getItem('user_name') && <NavDropdown.Item href="/register">Sign up</NavDropdown.Item>}

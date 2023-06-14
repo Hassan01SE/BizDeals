@@ -83,7 +83,7 @@ function App() {
                   <Route path="/businesses/:category" element={<BusinessList />} />
                   <Route path="/business/:id" element={<BusinessDetail />} />
                   <Route path="/cart" element={<Cart />} />
-                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/checkout/:id" element={<Checkout />} />
                   <Route path="/sell" element={<SellPage />} />
                   <Route path="/edit/:id" element={<BusinessEdit />} />
                   <Route path="/account" element={<Account />} />

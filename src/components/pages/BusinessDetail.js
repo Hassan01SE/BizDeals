@@ -13,7 +13,7 @@ import pic2 from '../images/coverpic5.png';
 
 import Figure from 'react-bootstrap/Figure';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 
@@ -24,7 +24,7 @@ import axios from 'axios';
 const BusinessDetail = () => {
 
     const { id } = useParams();
-
+    const navigate = useNavigate();
 
     const baseURL = `http://localhost:8000/api/listings/${id}`;
 
@@ -41,6 +41,12 @@ const BusinessDetail = () => {
 
 
     }, [])
+
+    const checkout = (id) => {
+
+        navigate(`/checkout/${id}`);
+
+    }
 
     if (!data) {
         return <h1>None</h1>
@@ -90,7 +96,7 @@ const BusinessDetail = () => {
                     <Row>
                         <h1 className='mt-2'>{data.title}</h1>
                         <h5>Price: Rs {data.price}</h5>
-                        <Button className='btn btn-md-primary'> Purchase </Button>
+                        <Button onClick={() => { checkout(data.id) }} className='btn btn-md-primary'> Purchase </Button>
                     </Row>
 
                     <Row>
