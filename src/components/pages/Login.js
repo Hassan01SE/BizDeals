@@ -38,12 +38,13 @@ const Login = () => {
         validationSchema: Yup.object({
 
             email: Yup.string().email('Invalid email address').required('Required'),
-            password: Yup.string().min(4, 'must be longer than 6 characters').required('Password is required')
+            password: Yup.string().min(4, 'must be longer than 4 characters').required('Password is required')
         }),
         onSubmit: async (values, { setSubmitting }) => {
             try {
                 const response = await client.post('/user/login/', values);
                 console.log(response.data);
+                
                 // Handle success
                 localStorage.setItem('access_token', response.data.access);
                 localStorage.setItem('refresh_token', response.data.refresh);
@@ -53,6 +54,9 @@ const Login = () => {
                 navigate('/home');
             } catch (error) {
                 console.error(error);
+                if (error){
+                    alert('Invalid Credentials')
+                }
                 // Handle error
             } finally {
                 setSubmitting(false);
