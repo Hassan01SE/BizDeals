@@ -69,7 +69,7 @@ const Checkout = () => {
             const payment = { ...values, "business": business, "seller": seller, "businessprice": businessprice, "username": username, "tokenpaid": tokenpaid };
             //const purchase = JSON.stringify(payment, null, 2)
             console.log(payment)
-            alert(payment)
+            
 
 
             try {
@@ -78,7 +78,7 @@ const Checkout = () => {
                 // Handle success
 
                 alert('Your Payment was successful')
-                navigate('/home');
+                navigate('/businesses/all');
 
             } catch (error) {
                 console.error(error);
