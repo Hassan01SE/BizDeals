@@ -1,59 +1,65 @@
-
+/* 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
+import CheckoutForm from './partials/CheckoutForm';
+import React, { useState, useEffect } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+
+
+import "../style/buy.css";
+
+// Make sure to call loadStripe outside of a component’s render to avoid
+// recreating the Stripe object on every render.
+// This is your test publishable API key.
+const stripePromise = loadStripe("pk_test_51NIuP9AtptvsQ5QyvN7x85kJ3JNmHGqdSLb4U6lsx0pIh8Gbz3NqpThu3yGF5z5KNh9jdpjAY4yhox45tBWY5ddH00TaWzQ0rw");
+
+
 
 
 const Cart = () => {
+
+
+    const [clientSecret, setClientSecret] = useState("");
+
+    useEffect(() => {
+        // Create PaymentIntent as soon as the page loads
+        fetch("http://localhost:8000/api/purchases/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+        })
+            .then((res) => res.json())
+            .then((data) => setClientSecret(data.clientSecret));
+    }, []);
+
+    const appearance = {
+        theme: 'stripe',
+    };
+    const options = {
+        clientSecret,
+        appearance,
+    };
+
+
+
+
+
+
+
+
     return (
+
         <div>
-            <Container>
-                <Row className='mb-4 mt-4'>
-                    <h2 className='mb-4 mt-4 text-center'>Your Business Purchase Details</h2>
-                </Row>
 
-                <Card className='mt-2 mb-4 p-4'>
-                    {/* <Card.Title> Delight Wear </Card.Title> */}
-                    <Card.Body>
-
-                        <section>
-                            <hr />
-                            <Row className='mt-2 mb-4 p-4'>
-
-                                <Col className='mr-2'>
-                                    <h3>Delight Wear </h3>
-
-                                </Col>
-
-                                <Col className=' ml-2'>
-                                    <h4>Budget: Rs 250,000</h4>
-                                    <Button variant="danger">Remove</Button>
-                                </Col>
-
-                            </Row>
-                            <hr />
-                        </section>
-                        <Row>
-                            <div className="d-grid gap-2">
-                                <Button variant="primary" size="lg">
-                                    Purchase
-                                </Button>
-
-                            </div>
-                        </Row>
-
-
-
-                    </Card.Body>
-                </Card>
-
-
-            </Container>
         </div>
+
     );
 }
 
-export default Cart;
+export default Cart; */

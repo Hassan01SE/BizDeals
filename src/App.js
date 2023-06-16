@@ -21,6 +21,14 @@ import BusinessEdit from './components/pages/BusinessEdit';
 
 import { AuthProvider, useAuth } from './components/context/Auth';
 import ProtectedRoute from './components/context/ProtectedRoute';
+import CheckoutSuccess from './components/pages/CheckoutSuccess';
+import CheckoutFail from './components/pages/CheckoutFail';
+
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from "@stripe/stripe-js/pure"
+
+const stripe_key = 'pk_test_51NIuP9AtptvsQ5QyvN7x85kJ3JNmHGqdSLb4U6lsx0pIh8Gbz3NqpThu3yGF5z5KNh9jdpjAY4yhox45tBWY5ddH00TaWzQ0rw';
+const stripePromise = loadStripe(stripe_key);
 
 
 function App() {
@@ -75,6 +83,7 @@ function App() {
 
 
                 <Route path="/" element={<LandingPage />} />
+                <Route path="/cart" element={<Cart />} />
 
                 {/* <Route path="/home" element={<Home />} /> */}
 
@@ -82,8 +91,11 @@ function App() {
                   <Route path='/home' element={<Home />} />
                   <Route path="/businesses/:category" element={<BusinessList />} />
                   <Route path="/business/:id" element={<BusinessDetail />} />
-                  <Route path="/cart" element={<Cart />} />
-                  <Route path="/checkout/:id" element={<Checkout />} />
+
+                  <Route path="/checkout/:id" element={<Elements stripe={stripePromise}><Checkout /></Elements>} />
+                  <Route path="/checkout/success" element={<Elements stripe={stripePromise}><CheckoutSuccess /></Elements>} />
+                  <Route path="/checkout/fail" element={<Elements stripe={stripePromise}><CheckoutFail /></Elements>} />
+
                   <Route path="/sell" element={<SellPage />} />
                   <Route path="/edit/:id" element={<BusinessEdit />} />
                   <Route path="/account" element={<Account />} />

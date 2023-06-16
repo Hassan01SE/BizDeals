@@ -53,7 +53,11 @@ const Login = () => {
                 navigate('/home');
             } catch (error) {
                 console.error(error);
+
                 // Handle error
+                if (error) {
+                    alert('Credentials entered were incorrect!');
+                }
             } finally {
                 setSubmitting(false);
             }

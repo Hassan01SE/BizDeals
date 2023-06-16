@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 
 import pic from '../images/delightwear.jpeg';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -23,6 +23,8 @@ const BusinessList = (props) => {
     const { heading, banner = true, type } = props;
 
     let baseURL;
+
+    const navigate = useNavigate();
 
     if (category) {
         baseURL = `/listings/?category=${category}`;
@@ -41,19 +43,31 @@ const BusinessList = (props) => {
 
 
     useEffect(() => {
+        try {
+            client.get(baseURL).then((res) => {
+                setData(res.data)
 
-        client.get(baseURL).then((res) => {
-            setData(res.data)
-
-        })
+            })
+        }
+        catch (error) {
+            if (error) {
+                navigate('/login');
+            }
+        }
 
 
 
     }, [])
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
 
 
+    const redirect = (id) => {
+        navigate(`/business/${id}`);
+    }
 
 
 
@@ -86,7 +100,7 @@ const BusinessList = (props) => {
 
                 {category && <h1>{titleCase(category) + " Businesses"}</h1>}
                 {!category && <h1>{heading}</h1>}
-                <Row className=' mt-4 mb-4 overflow-auto' style={{ height: "800px" }}>
+                <Row className=' mt-4 mb-4'>
 
 
                     {data.map((item) => {
@@ -94,13 +108,13 @@ const BusinessList = (props) => {
                             <Col className='col-lg-3 mt-2 mr-2 ml-2 mb-2' key={item.id} >
 
                                 <Card  >
-                                    <Card.Img variant="top" src={item.img1} />
+                                    <Card.Img variant="top" src={item.img1} style={{ height: '200px' }} />
                                     <Card.Body  >
                                         <Card.Title>{item.title}</Card.Title>
                                         <Card.Text>
                                             Asking Price: Rs {item.price}
                                         </Card.Text>
-                                        <Button variant="primary"><Link style={{ textDecoration: 'none', color: 'white' }} to={`/business/${item.id}`} >View Details</Link></Button>
+                                        <Button onClick={() => { redirect(item.id) }} variant="primary">View Details</Button>
 
                                     </Card.Body>
                                 </Card>

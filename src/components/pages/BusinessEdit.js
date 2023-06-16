@@ -35,6 +35,10 @@ const BusinessEdit = () => {
 
     }, [])
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
 
     const formik = useFormik({
         initialValues: {

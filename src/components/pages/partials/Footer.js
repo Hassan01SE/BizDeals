@@ -65,7 +65,7 @@ const Footer = () => {
                                     </a>
                                 </p>
                                 <p>
-                                    <a href='#!' className='text-reset'>
+                                    <a href='/sell' className='text-reset'>
                                         List a Business
                                     </a>
                                 </p>

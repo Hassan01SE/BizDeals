@@ -42,6 +42,10 @@ const BusinessDetail = () => {
 
     }, [])
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const checkout = (id) => {
 
         navigate(`/checkout/${id}`);
