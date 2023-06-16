@@ -2,9 +2,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 
 import "../style/checkout.css"
 
@@ -97,131 +99,143 @@ const Checkout = () => {
 
 
     return (
+
         <div>
-            <div className="maincontainer">
+            <Container fluid>
 
-                <div class="container">
-                    <div class="py-5 text-center">
 
-                        <h1>Checkout</h1>
-                        <p class="lead"> <span><b>Disclaimer:</b></span> When purchasing a business through our platform, <b>please be aware that a token payment of 30% of the business's value will be required.</b> Additionally, BizDeal, as the provider of the platform facilitating the buying and selling of businesses, <b>will retain a share of 20% from the total payment amount after successful business transfer of ownership.</b> It's important to consider these factors and evaluate the overall cost before proceeding with a purchase. We recommend conducting thorough research and seeking professional advice to make informed decisions.</p>
+                <Row>
+                    <div>
+                        <h1 className='mt-3 mb-3' style={{ textAlign: 'center' }}>Check out</h1>
+                        <Alert fluid variant="info">
+                            <Alert.Heading>&#9432; Important Information about Purchasing a Business on BizDeals</Alert.Heading>
+                            <div>
+                                <p>
+                                    <span><b>Disclaimer:</b></span> When purchasing a business through our platform, it's crucial to understand the terms and conditions involved. We want to provide you with the necessary information to make an informed decision. </p>
+
+                                <p> <b>Token Payment:</b> To initiate the purchase, a token payment of 30% of the business's value will be required. This payment demonstrates your serious intent and commitment to proceed with the transaction. </p>
+
+                                <p>
+                                    <b>BizDeal's Share:</b> As the provider of the platform facilitating the buying and selling of businesses, BizDeal retains a share of 20% from the total payment amount after the successful transfer of ownership. This fee covers the operational costs and continuous improvement of our platform to provide you with a seamless experience. </p>
+                                <p>
+                                    It's important to carefully evaluate these factors and consider the overall cost before proceeding with a purchase. We highly recommend conducting thorough research, analyzing the business's potential, and seeking professional advice to ensure a successful and rewarding investment.
+
+                                    At BizDeals, we are committed to transparency and facilitating fair transactions. If you have any further questions or require assistance, please don't hesitate to reach out to our support team. </p>
+                            </div>
+                        </Alert>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 order-md-2 mb-4">
-                            <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="text-muted">Business you are purchasing!</span>
-
-                            </h4>
-                            <ul class="list-group mb-3">
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                    <div>
-                                        <h6 class="my-0">{data.title}</h6>
-                                        <small class="text-muted">{data.description}</small>
-                                    </div>
-
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-
-                                    <h6>Total Value</h6>
-                                    <span>Rs {data.price}</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between lh-condensed">
-
-
-                                    <span class="text-success">- Rs {data.price * 0.70}</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between">
-                                    <span> <b>Token to be paid</b> </span>
-                                    <strong>Rs {data.price * 0.30}</strong>
-                                </li>
-                            </ul>
-
-                        </div>
-                        <div class="col-md-8 order-md-1">
-                            <h4 class="mb-3">Important Information Required!</h4>
-                            <form onSubmit={formik.handleSubmit}  >
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="firstName">First name</label>
-                                        <input type="text" class="form-control" id="firstName" placeholder="" value="" name='firstname'
-                                            {...formik.getFieldProps('firstname')} />
-                                        {formik.touched.firstname && formik.errors.firstname ? (
-                                            <div className="text-danger">{formik.errors.firstname}</div>
-                                        ) : null}
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="lastName">Last name</label>
-                                        <input type="text" class="form-control" id="lastName" placeholder="" value="" name='lastname'
-                                            {...formik.getFieldProps('lastname')} />
-                                        {formik.touched.lastname && formik.errors.lastname ? (
-                                            <div className="text-danger">{formik.errors.lastname}</div>
-                                        ) : null}
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="username">Username</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">@</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="username" placeholder="Username" value={user} />
-
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email">Email <span class="text-muted">(Required)</span></label>
-                                    <input type="email" class="form-control" id="email" placeholder="you@example.com" name='email'
-                                        {...formik.getFieldProps('email')} />
-                                    {formik.touched.email && formik.errors.email ? (
-                                        <div className="text-danger">{formik.errors.email}</div>
+                </Row>
+                <Row>
+                    <Col className=' col-md-6  col-sm-12  mt-3 mb-3' style={{ width: '100%' }}>
+                        <h4 class="mb-3">Important Information Required!</h4>
+                        <form onSubmit={formik.handleSubmit}  >
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName">First name</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="" value="" name='firstname'
+                                        {...formik.getFieldProps('firstname')} />
+                                    {formik.touched.firstname && formik.errors.firstname ? (
+                                        <div className="text-danger">{formik.errors.firstname}</div>
                                     ) : null}
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="address">Your Introduction</label>
-                                    <input type="text" class="form-control" id="intro" placeholder="Your Short Introduction to the Seller" name='introduction'
-                                        {...formik.getFieldProps('introduction')} />
-                                    {formik.touched.introduction && formik.errors.introduction ? (
-                                        <div className="text-danger">{formik.errors.introduction}</div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName">Last name</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="" value="" name='lastname'
+                                        {...formik.getFieldProps('lastname')} />
+                                    {formik.touched.lastname && formik.errors.lastname ? (
+                                        <div className="text-danger">{formik.errors.lastname}</div>
                                     ) : null}
-
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-4 mb-3">
-                                        <label htmlFor='number'>Contact Number</label>
-
-                                        <InputGroup className="mb-3">
-                                            <InputGroup.Text id="number">+92</InputGroup.Text>
-                                            <Form.Control
-                                                placeholder="number"
-                                                aria-label="number"
-                                                aria-describedby="number"
-                                                type='number'
-                                                name='number'
-                                                {...formik.getFieldProps('number')}
-                                            />
-                                            {formik.touched.number && formik.errors.number ? (
-                                                <div className="text-danger">{formik.errors.number}</div>
-                                            ) : null}
-                                        </InputGroup>
-
+                            </div>
+                            <div class="mb-3">
+                                <label for="username">Username</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">@</span>
                                     </div>
+                                    <input type="text" class="form-control" id="username" placeholder="Username" value={user} />
+
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email">Email <span class="text-muted">(Required)</span></label>
+                                <input type="email" class="form-control" id="email" placeholder="you@example.com" name='email'
+                                    {...formik.getFieldProps('email')} />
+                                {formik.touched.email && formik.errors.email ? (
+                                    <div className="text-danger">{formik.errors.email}</div>
+                                ) : null}
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address">Your Introduction</label>
+                                <input type="text" class="form-control" id="intro" placeholder="Your Short Introduction to the Seller" name='introduction'
+                                    {...formik.getFieldProps('introduction')} />
+                                {formik.touched.introduction && formik.errors.introduction ? (
+                                    <div className="text-danger">{formik.errors.introduction}</div>
+                                ) : null}
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label htmlFor='number'>Contact Number</label>
+
+                                    <InputGroup className="mb-3">
+                                        <InputGroup.Text id="number">+92</InputGroup.Text>
+                                        <Form.Control
+                                            placeholder="number"
+                                            aria-label="number"
+                                            aria-describedby="number"
+                                            type='number'
+                                            name='number'
+                                            {...formik.getFieldProps('number')}
+                                        />
+                                        {formik.touched.number && formik.errors.number ? (
+                                            <div className="text-danger">{formik.errors.number}</div>
+                                        ) : null}
+                                    </InputGroup>
 
                                 </div>
 
+                            </div>
 
 
-                                <hr class="mb-4" />
-                                <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Purchase</button>
-                            </form>
-                        </div>
-                    </div>
 
-                </div>
+                            <hr class="mb-4" />
+                            <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Purchase</button>
+                        </form>
 
-            </div>
+                    </Col>
+
+                    <Col className=' col-md-6 col-sm-12 mt-3 mb-3' style={{ width: '100%', borderRadius: '5%' }}>
+
+                        <Card className='ml-3 mt-3 mb-3' >
+                            <Card.Img style={{ height: '300px' }} variant="top" src={data.img1} />
+                            <Card.Body>
+                                <Card.Title>{data.title}</Card.Title>
+                                <Card.Text>
+                                    {data.description}
+                                </Card.Text>
+                            </Card.Body>
+                            <ListGroup className="list-group-flush">
+                                <ListGroup.Item>Business Value: Rs <b>{data.price} (PKR)</b></ListGroup.Item>
+                                <ListGroup.Item><b>30% </b> token to be paid!</ListGroup.Item>
+                                <ListGroup.Item>Total Amount to be paid: Rs <b> {data.price * 0.30} (PKR) </b></ListGroup.Item>
+                            </ListGroup>
+
+                        </Card>
+
+
+
+                    </Col>
+
+                </Row>
+            </Container>
         </div>
+
+
+
+
     );
 }
 
