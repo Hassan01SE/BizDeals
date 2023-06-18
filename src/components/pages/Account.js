@@ -3,10 +3,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
+import '../style/businesslisting.css'
 import client from "../config/AxiosConfig";
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+import Alert from 'react-bootstrap/Alert';
 
 
 
@@ -17,6 +19,8 @@ const Account = () => {
     const baseURL = `/listings/?username=${user}`;
 
     const [data, setData] = useState([]);
+
+    const [alert, setAlert] = useState(false);
 
     useEffect(() => {
 
@@ -39,7 +43,10 @@ const Account = () => {
     const deleteListing = async (id) => {
 
         const response = await client.delete(`/listings/${id}`);
-        navigate('/home');
+        setAlert(true);
+        window.scrollTo(0, 0);
+
+        //navigate('/home');
 
 
 
@@ -63,6 +70,10 @@ const Account = () => {
 
         <div className='mt-3 mb-5'>
             <Container>
+                {alert && <Alert variant='danger'>
+                    Business Listing has been deleted!
+                </Alert>}
+
                 <Row>
                     <Col>
                         <h2>Account details</h2>
@@ -84,8 +95,10 @@ const Account = () => {
                         return (
                             <Col className='mb-2 mt-2 ml-2 mr-2 col-6' key={item.id}>
 
-                                <Card >
-                                    <Card.Img variant="top" src={item.img1} />
+                                <Card className='custom-card'  >
+                                    <div className='custom-image'>
+                                        <Card.Img className='image' variant="top" src={item.img1} />
+                                    </div>
                                     <Card.Body>
                                         <Card.Title>{item.title}</Card.Title>
                                         <Card.Text>

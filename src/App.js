@@ -7,7 +7,7 @@ import NavHead from './components/pages/partials/NavHead';
 import Footer from './components/pages/partials/Footer';
 import Home from './components/pages/Home';
 import NotFound from './components/pages/NotFound';
-import Cart from './components/pages/Cart';
+
 import Checkout from './components/pages/Checkout';
 import { useEffect, useState } from 'react';
 import BusinessList from './components/pages/BusinessList';
@@ -83,7 +83,7 @@ function App() {
 
 
                 <Route path="/" element={<LandingPage />} />
-                <Route path="/cart" element={<Cart />} />
+
 
                 {/* <Route path="/home" element={<Home />} /> */}
 

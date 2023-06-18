@@ -48,7 +48,7 @@ const Register = () => {
                 .max(20, 'Must be 20 characters or less')
                 .required('Required'),
             email: Yup.string().email('Invalid email address').required('Required'),
-            password: Yup.string().min(4, 'must be longer than 6 characters').required('Password is required')
+            password: Yup.string().min(4, 'must be longer than 4 characters').required('Password is required')
         }),
         onSubmit: async (values, { setSubmitting }) => {
             try {

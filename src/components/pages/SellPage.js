@@ -39,10 +39,10 @@ const SellPage = () => {
             title: Yup.string().required('Required'),
             category: Yup.string().required('Required'),
             location: Yup.string().required('Required'),
-            price: Yup.number().required('Required'),
-            revenue: Yup.number().required('Required'),
-            expense: Yup.number().required('Required'),
-            profit: Yup.number().required('Required'),
+            price: Yup.number().min(1, 'Value must be greater than zero').required('Required'),
+            revenue: Yup.number().min(0, 'Value must be positive').required('Required'),
+            expense: Yup.number().min(0, 'Value must be positive').required('Required'),
+            profit: Yup.number().min(0, 'Value must be positive').required('Required'),
             description: Yup.string().required('Required'),
             img1: Yup.string().url('Invalid URL').required('Required'),
             img2: Yup.string().url('Invalid URL').required('Required'),
@@ -61,6 +61,9 @@ const SellPage = () => {
                     navigate('/home');
                 }
             } catch (error) {
+                if (error) {
+                    alert('Something went wrong!');
+                }
                 console.error(error);
                 // Handle error
             } finally {

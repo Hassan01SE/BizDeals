@@ -1,4 +1,5 @@
 import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Header from './partials/Header';
@@ -7,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useFormik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -16,6 +17,8 @@ import { useAuth } from '../context/Auth';
 
 
 const Login = () => {
+
+    const [alert, setAlert] = useState(false);
 
     useEffect(() => {
         document.title = "Account - BizDeals"
@@ -38,7 +41,7 @@ const Login = () => {
         validationSchema: Yup.object({
 
             email: Yup.string().email('Invalid email address').required('Required'),
-            password: Yup.string().min(4, 'must be longer than 6 characters').required('Password is required')
+            password: Yup.string().min(4, 'must be longer than 4 characters').required('Password is required')
         }),
         onSubmit: async (values, { setSubmitting }) => {
             try {
@@ -56,6 +59,8 @@ const Login = () => {
 
                 // Handle error
                 if (error) {
+                    setAlert(true);
+                    window.scrollTo(0, 0);
                     alert('Credentials entered were incorrect!');
                 }
             } finally {
@@ -72,6 +77,10 @@ const Login = () => {
         {/*  <Header /> */}
 
         <Container className='mt-5 mb-5'>
+
+            {alert && <Alert variant='danger'>
+                Invalid Credentials!
+            </Alert>}
 
             <Card className='p-5'>
 

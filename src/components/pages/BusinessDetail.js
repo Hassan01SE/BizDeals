@@ -62,7 +62,7 @@ const BusinessDetail = () => {
 
             <Row className='mb-5 mt-3'>
                 <Col sm={12} md={6} key={data.id} >
-                    <Row>
+                    {/* <Row>
                         <Figure>
                             <Figure.Image
                                 width={700}
@@ -92,14 +92,46 @@ const BusinessDetail = () => {
                         </Col>
 
 
-                    </Row>
+                    </Row> */}
+
+                    <Carousel >
+                        <Carousel.Item>
+                            <img fluid
+                                className="d-block w-100"
+                                src={data.img1}
+                                alt="First slide"
+                                height='500px'
+
+                            />
+
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <img fluid
+                                className="d-block w-100"
+                                src={data.img2}
+                                alt="Second slide"
+                                height='500px'
+                            />
+
+
+                        </Carousel.Item>
+
+                    </Carousel>
+                    <div className='mt-2 mb-3'>
+                        <h3 style={{ textDecoration: 'none' }}>Seller Details</h3>
+                        <ul>
+                            <li>Name: {data.seller}</li>
+                            <li>Email Address: {data.email}</li>
+                            <li>Contact Number: {data.number}</li>
+                        </ul>
+                    </div>
 
                 </Col>
 
                 <Col sm={12} md={6}>
                     <Row>
                         <h1 className='mt-2'>{data.title}</h1>
-                        <h5>Price: Rs {data.price}</h5>
+                        <h5>Price: <b> RS {data.price} </b></h5>
                         {data.username !== localStorage.getItem('user_name') && <Button onClick={() => { checkout(data.id) }} className='btn btn-md-primary'> Purchase </Button>}
                         {data.username === localStorage.getItem('user_name') && <span><u>You Own this Business!</u></span>}
                     </Row>
@@ -124,9 +156,9 @@ const BusinessDetail = () => {
                                 <Card.Title>Business Info</Card.Title>
                                 <Card.Text>
                                     <ul>
-                                        <li>Revenue in PKR per month: RS {data.revenue}</li>
-                                        <li>Expense in PKR per month: RS {data.expense}</li>
-                                        <li>Profit in PKR per month: RS {data.profit}</li>
+                                        <li>Revenue in PKR per month: RS <b> {data.revenue}</b>  </li>
+                                        <li>Expense in PKR per month: RS <b> {data.expense}</b>  </li>
+                                        <li>Profit in PKR per month: RS <b> {data.profit} </b> </li>
                                     </ul>
                                 </Card.Text>
 

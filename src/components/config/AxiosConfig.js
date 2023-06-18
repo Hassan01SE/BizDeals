@@ -17,4 +17,16 @@ const client = axios.create({
 });
 
 
+client.interceptors.response.use(
+    response => response,
+    error => {
+        if (error.response && error.response.status === 403) {
+            // Redirect to the login page
+            window.location.href = '/login';
+        }
+        return Promise.reject(error);
+    }
+);
+
+
 export default client;

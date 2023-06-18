@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { FaUserCircle, FaShoppingBag } from 'react-icons/fa';
 import { useAuth } from '../../context/Auth';
+import client from '../../config/AxiosConfig';
 
 
 const NavHead = () => {
@@ -20,6 +21,7 @@ const NavHead = () => {
             auth.logout();
         }
         localStorage.clear();
+        client.defaults.headers['Authorization'] = null;
 
         navigate('/login');
     }

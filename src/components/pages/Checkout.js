@@ -67,7 +67,7 @@ const Checkout = () => {
             const seller = data.seller;
             const businessprice = data.price;
             const username = user;
-            const tokenpaid = data.price * 0.31;
+            const tokenpaid = Math.round(data.price * 0.30);
             const payment = { ...values, "business": business, "seller": seller, "businessprice": businessprice, "username": username, "tokenpaid": tokenpaid };
             //const purchase = JSON.stringify(payment, null, 2)
             console.log(payment)
@@ -85,6 +85,9 @@ const Checkout = () => {
                  navigate('/home'); */
 
             } catch (error) {
+                if (error) {
+                    alert('something went wrong!');
+                }
                 console.error(error);
                 // Handle error
             } finally {
@@ -220,7 +223,7 @@ const Checkout = () => {
                             <ListGroup className="list-group-flush">
                                 <ListGroup.Item>Business Value: Rs <b>{data.price} (PKR)</b></ListGroup.Item>
                                 <ListGroup.Item><b>30% </b> token to be paid!</ListGroup.Item>
-                                <ListGroup.Item>Total Amount to be paid: Rs <b> {data.price * 0.30} (PKR) </b></ListGroup.Item>
+                                <ListGroup.Item>Total Amount to be paid: Rs <b> {Math.round(data.price * 0.30)} (PKR) </b></ListGroup.Item>
                             </ListGroup>
 
                         </Card>

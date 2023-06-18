@@ -59,10 +59,10 @@ const BusinessEdit = () => {
             number: Yup.number().required('Required'),
             title: Yup.string().required('Required'),
             location: Yup.string().required('Required'),
-            price: Yup.number().required('Required'),
-            revenue: Yup.number().required('Required'),
-            expense: Yup.number().required('Required'),
-            profit: Yup.number().required('Required'),
+            price: Yup.number().min(1, 'Value must be greater than zero').required('Required'),
+            revenue: Yup.number().min(0, 'Value must be positive').required('Required'),
+            expense: Yup.number().min(0, 'Value must be positive').required('Required'),
+            profit: Yup.number().min(0, 'Value must be positive').required('Required'),
             description: Yup.string().required('Required'),
         }),
         onSubmit: async (values, { setSubmitting }) => {
@@ -75,6 +75,9 @@ const BusinessEdit = () => {
                 navigate(`/business/${data.id}`);
 
             } catch (error) {
+                if (error) {
+                    alert('something went wrong!');
+                }
                 console.error(error);
                 // Handle error
             } finally {

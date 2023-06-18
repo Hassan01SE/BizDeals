@@ -5,7 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-import pic from '../images/delightwear.jpeg';
+import '../style/businesslisting.css'
+
 
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -107,12 +108,14 @@ const BusinessList = (props) => {
                         return (
                             <Col className='col-lg-3 mt-2 mr-2 ml-2 mb-2' key={item.id} >
 
-                                <Card  >
-                                    <Card.Img variant="top" src={item.img1} style={{ height: '200px' }} />
+                                <Card className='custom-card'  >
+                                    <div className='custom-image'>
+                                        <Card.Img className='image' variant="top" src={item.img1} />
+                                    </div>
                                     <Card.Body  >
                                         <Card.Title>{item.title}</Card.Title>
                                         <Card.Text>
-                                            Asking Price: Rs {item.price}
+                                            Asking Price: <b> Rs {item.price} </b> (PKR)
                                         </Card.Text>
                                         <Button onClick={() => { redirect(item.id) }} variant="primary">View Details</Button>
 
