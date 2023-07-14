@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+<h1>BizDeals Frontend</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p>BizDeals is a web application developed using React and Bootstrap. It provides a marketplace for buying and selling businesses and digital products. The frontend is built using modern web development technologies to deliver a seamless user experience.</p>
 
-## Available Scripts
+<h2>Project Overview</h2>
 
-In the project directory, you can run:
+<p>BizDeals was developed with the vision of creating a comprehensive marketplace that caters to the needs of buyers and sellers within the business and digital product space. Leveraging modern web development technologies and frameworks such as REACT JS and Bootstrap, the platform offers a robust and efficient solution for online transactions. It follows a C2C model where consumers can host their businesses for sale.</p>
 
-### `npm start`
+<h2>Features</h2>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<ul>
+  <li>Landing page showcasing the platform's features and benefits</li>
+  <li>Home page displaying a list of available business listings</li>
+  <li>User registration and login functionality</li>
+  <li>Business listing page with detailed information about each listing</li>
+  <li>Sell your business page for sellers to create listings</li>
+  <li>View your listings page to manage and edit your existing listings</li>
+  <li>Integration with Stripe for secure payment processing</li>
+  <li>Client-side form validation using Formik and Yup</li>
+  <li>Responsive design with Bootstrap for optimal viewing on various devices</li>
+</ul>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<h2>Project Structure</h2>
 
-### `npm test`
+<p>The frontend project follows a typical structure for a React application:</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<ul>
+  <li><code>src/</code>: Root directory for the source code
+    <ul>
+      <li><code>components/</code>: Reusable React components</li>
+      <li><code>config/</code>: Configuration files, such as Axios configuration</li>
+      <li><code>context/</code>: files for protected routes and Auth Context</li>
+      <li><code>style/</code>: Stylesheets for custom styling</li>
+      <li><code>images/</code>: assets such as banner, images on landing page etc</li>
+      <li><code>pages/</code>: Different pages of the application</li>
+      <li><code>App.js</code>: Entry point of the application</li>
+      <li><code>index.js</code>: Root file for rendering the React app</li>
+      <li><code>index.css</code>: Global styles</li>
+    </ul>
+  </li>
+</ul>
 
-### `npm run build`
+<h2>Getting Started</h2>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p>To run the BizDeals front-end on your local machine, follow these steps:</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<ol>
+  <li>Clone the repository:</li>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  <pre><code>git clone &lt;frontend-repo-url&gt;</code></pre>
 
-### `npm run eject`
+  <li>Install the dependencies:</li>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  <pre><code>cd bizdeals-frontend
+npm install</code></pre>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  <li>Start the development server:</li>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  <pre><code>npm start</code></pre>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  <li>Open your browser and visit <code>http://localhost:3000</code> to access the application.</li>
+</ol>
 
-## Learn More
+<h2>Dependencies</h2>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<p>The frontend project utilizes the following libraries and dependencies:</p>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<ul>
+  <li>React: JavaScript library for building user interfaces</li>
+  <li>React Router: Routing library for managing navigation</li>
+  <li>Bootstrap: CSS framework for responsive design</li>
+  <li>Axios: HTTP client for making API requests</li>
+  <li>Formik: Form library for managing form state</li>
+  <li>Yup: JavaScript schema validation library</li>
+</ul>
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p><em>This project is licensed under the MIT License.</em></p>
