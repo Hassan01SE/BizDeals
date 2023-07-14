@@ -69,7 +69,7 @@ npm install</code></pre>
 
 <ul>
   <li>React: JavaScript library for building user interfaces</li>
-  <li>React Router: Routing library for managing navigation</li>
+  <li>React Router Dom: Routing library for managing navigation</li>
   <li>Bootstrap: CSS framework for responsive design</li>
   <li>Axios: HTTP client for making API requests</li>
   <li>Formik: Form library for managing form state</li>
