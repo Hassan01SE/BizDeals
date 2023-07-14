@@ -2,6 +2,8 @@
 
 <p>BizDeals is a web application developed using React and Bootstrap. It provides a marketplace for buying and selling businesses and digital products. The frontend is built using modern web development technologies to deliver a seamless user experience.</p>
 
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/W3gK9rp/Picture1.png" alt="Picture1" border="0"></a>
+
 <h2>Project Overview</h2>
 
 <p>BizDeals was developed with the vision of creating a comprehensive marketplace that caters to the needs of buyers and sellers within the business and digital product space. Leveraging modern web development technologies and frameworks such as REACT JS and Bootstrap, the platform offers a robust and efficient solution for online transactions. It follows a C2C model where consumers can host their businesses for sale.</p>
